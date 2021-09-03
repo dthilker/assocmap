@@ -75,9 +75,9 @@
 
 //  map.setView( [3700, 3700], -2);
 
-var myStyle = [{"color": "yellow", "weight": 0.5, "opacity": 0.33},  
-   {"color": "green", "weight": 0.5, "opacity": 0.33},    
-   {"color": "red", "weight": 0.5, "opacity": 0.33}];    
+var myStyleRED   = {"color": "red", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};  
+var myStyleGREEN = {"color": "green", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
+var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
   
 var urls = [
     'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson'
@@ -90,8 +90,7 @@ for (var i = 0; i < urls.length; i++) {
     var layers = {};
 
     $.getJSON(urls[i], function (data) {
-        myStyleNow = myStyle[i]
-        layers[i] = new L.GeoJSON(data,{ style: myStyleNow }).addTo(map);
+        layers[i] = new L.GeoJSON(data,{ style: myStyleBLUE }).addTo(map);
     }).done(function () {
         console.log('$.getJSON Done!');
     }).fail(function () {
@@ -100,8 +99,8 @@ for (var i = 0; i < urls.length; i++) {
 }
 
 
-//  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson");       
-//  geojsonLayer.addTo(map);
+  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", style: myStyleGREEN);       
+  geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
 //  var myLayer = L.geoJSON().addTo(map);
