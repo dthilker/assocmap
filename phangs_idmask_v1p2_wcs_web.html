@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>CRS.Simple example - Leaflet</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js" integrity="sha512-MMmVaQGDVI3Wouc5zT5G7k/snN9gPqquIhZsHgIIHVDlRgYTYGxrwu6w482iIhAq8n5R6+pcBgpGgxFFBz7rZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js" integrity="sha512-NA+0vegFw6AiYXT23H+hk43LxqwpJkkviK/vHTESeu+jUpvWssfQRWWqSR07aUhGSKtfpkdlE8YFrVaHsnb3jw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+//    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js" integrity="sha512-Abr21JO2YqcJ03XGZRPuZSWKBhJpUAR6+2wH5zBeO4wAw4oksr8PRdF+BKIRsxvCdq+Mv4670rZ+dLnIyabbGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+      html, body {
+      height: 100%;
+      margin: 0;
+      }
+      #map {
+      width: 100%;
+      height: 100%;
+      }
+      </style>
+
+    
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+   var fov = 7400 * 1.10055555555555e-05;  // degrees
+   var Rearth = 6378137;  // meters
+   var pixAngularScale0 = 512 * 180 / (3.14159 * 2 * Rearth); // zoom 0
+   var resolution0 = fov/pixAngularScale0; // zoom 0
+   var projCenterLat = -36.14292669;
+   var projCenterLong = 53.40518235;
+   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=0 +y_0=0';
+
+   proj4.defs('urn:ogc:def:crs:d4', projString);
+
+// ra, dec are for the upper left corner of image
+   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
+
+   var crs = new L.Proj.CRS('EPSG:', projString, {
+     resolutions: [
+       resolution0, resolution0/2, resolution0/4, resolution0/8,
+       resolution0/16, resolution0/32, resolution0/64
+     ],
+     transformation: xform
+   });
+
+   var map = L.map('map', {
+     crs: crs
+   }).setView([projCenterLat,projCenterLong], 0);
+
+//  var bounds = [[53.4556,53.35476],[-36.10220109,-36.18363115]];
+  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
+  var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
+
+  var sol = L.latLng([ -36.14292669, 53.40518235 ]);
+  var markerone = L.marker(sol).addTo(map);
+  markerone.bindTooltip("tool tip bound to marker"); 
+
+  var sol = L.latLng([ -36.14092669, 53.40918235 ]);
+  var markerone = L.marker(sol).addTo(map);
+  markerone.bindTooltip("tool tip bound to marker");
+
+//below works
+//  var polyline = L.polyline([[-36.10220109,53.4556],[-36.18363115,53.35476]]).addTo(map);
+//  polyline.bindTooltip("tool tip is bound");
+
+//  map.setView( [3700, 3700], -2);
+
+///var urls = [
+///    'https://app.box.com/s/mtaerktg21ef7fvcn086stj02n20t1sa'
+///];
+///
+///for (var i = 0; i < urls.length; i++) {
+///
+///    var layers = {};
+///
+///    $.getJSON(urls[i], function (data) {
+///        layers[i] = new L.GeoJSON(data).addTo(map);
+///    }).done(function () {
+///        console.log('$.getJSON Done!');
+///    }).fail(function () {
+///        console.log('$.getJSON Fail!');
+///    });
+///}
+
+
+  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson");       
+  geojsonLayer.addTo(map);
+
+//probably doesn't wait for load...
+//  var myLayer = L.geoJSON().addTo(map);
+//  myLayer.addData("64pc_wcs.geojson");
+
+</script>
+
+
+
+</body>
+</html>
