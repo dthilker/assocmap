@@ -121,23 +121,6 @@ for (var i = 0; i < urls.length; i++) {
 //  myLayer.addData("64pc_wcs.geojson");
 
   
-  
-	// control that shows state info on hover
-	var info = L.control();
-
-	info.onAdd = function (map) {
-		this._div = L.DomUtil.create('div', 'info');
-		this.update();
-		return this._div;
-	};
-
-	info.update = function (props) {
-		this._div.innerHTML = '<h4>Properties</h4>' +  (props ?
-			'<b>' + props.age + '</b><br />' + props.mass + ' M<sup>sun</sup>'
-			: 'Hover over object');
-	};
-
-	info.addTo(map);  
 </script>
 
 
