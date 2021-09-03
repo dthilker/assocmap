@@ -75,9 +75,28 @@
 
 //  map.setView( [3700, 3700], -2);
 
+var myStyleRED = {
+    "color": "red",
+    "weight": 1,
+    "opacity": 0.65
+};  
+  
+var myStyleGREEN = {
+    "color": "green",
+    "weight": 1,
+    "opacity": 0.65
+};    
+  
+var myStyleBLUE = {
+    "color": "blue",
+    "weight": 1,
+    "opacity": 0.65
+};    
+  
 var urls = [
-    '64pc_wcs.geojson',
-    '32pc_wcs.geojson'
+    'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson',
+    'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson',
+    'ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson'
 ];
 
 for (var i = 0; i < urls.length; i++) {
@@ -85,7 +104,7 @@ for (var i = 0; i < urls.length; i++) {
     var layers = {};
 
     $.getJSON(urls[i], function (data) {
-        layers[i] = new L.GeoJSON(data).addTo(map);
+        layers[i] = new L.GeoJSON(data,{style:myStyleRED}).addTo(map);
     }).done(function () {
         console.log('$.getJSON Done!');
     }).fail(function () {
