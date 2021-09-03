@@ -99,7 +99,7 @@ for (var i = 0; i < urls.length; i++) {
 }
 
 
-  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", style: myStyleGREEN);       
+  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", {style: myStyleGREEN});       
   geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
