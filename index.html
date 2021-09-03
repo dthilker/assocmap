@@ -88,7 +88,7 @@ for (var i = 0; i < urls.length; i++) {
     var layers = {};
 
     $.getJSON(urls[i], function (data) {
-        layers[i] = new L.GeoJSON(data,{ style: myStyle[i] }).addTo(map);
+        layers[i] = new L.GeoJSON(data,{ style: myStyle[1] }).addTo(map);
     }).done(function () {
         console.log('$.getJSON Done!');
     }).fail(function () {
