@@ -75,26 +75,26 @@
 
 //  map.setView( [3700, 3700], -2);
 
-///var urls = [
-///    'https://app.box.com/s/mtaerktg21ef7fvcn086stj02n20t1sa'
-///];
-///
-///for (var i = 0; i < urls.length; i++) {
-///
-///    var layers = {};
-///
-///    $.getJSON(urls[i], function (data) {
-///        layers[i] = new L.GeoJSON(data).addTo(map);
-///    }).done(function () {
-///        console.log('$.getJSON Done!');
-///    }).fail(function () {
-///        console.log('$.getJSON Fail!');
-///    });
-///}
+var urls = [
+    '64pc_wcs.geojson'
+];
+
+for (var i = 0; i < urls.length; i++) {
+
+    var layers = {};
+
+    $.getJSON(urls[i], function (data) {
+        layers[i] = new L.GeoJSON(data).addTo(map);
+    }).done(function () {
+        console.log('$.getJSON Done!');
+    }).fail(function () {
+        console.log('$.getJSON Fail!');
+    });
+}
 
 
-  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson");       
-  geojsonLayer.addTo(map);
+//  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson");       
+//  geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
 //  var myLayer = L.geoJSON().addTo(map);
