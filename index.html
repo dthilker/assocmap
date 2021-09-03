@@ -48,14 +48,14 @@
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
        resolution0, resolution0/2, resolution0/4, resolution0/8,
-       resolution0/16, resolution0/32, resolution0/64
+       resolution0/16, resolution0/32, resolution0/64, resolution0/128, resolution0/256
      ],
      transformation: xform
    });
 
    var map = L.map('map', {
      crs: crs
-   }).setView([projCenterLat,projCenterLong], 0);
+   }).setView([projCenterLat,projCenterLong], 2);
 
 //  var bounds = [[53.4556,53.35476],[-36.10220109,-36.18363115]];
   var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
