@@ -38,14 +38,14 @@
    var resolution0 = fov/pixAngularScale0; // zoom 0
    var projCenterLat = -36.14292669;
    var projCenterLong = 53.40518235;
-   var projCenterLong = 53.40518235-1.10055555555555e-05;
-   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=2 +y_0=2'; //used to be 0,0
+//   var projCenterLong = 53.40518235-1.10055555555555e-05;
+   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=0 +y_0=0'; //used to be 0,0
 
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
 // ra, dec are for the upper left corner of image
-//   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
-   var xform = new L.Transformation(-1, -36.10218458, -1, 53.45560616);
+   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
+//   var xform = new L.Transformation(-1, -36.10218458, -1, 53.45560616);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
@@ -60,13 +60,13 @@
    }).setView([projCenterLat,projCenterLong], 4);
 
 
-//  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
+  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
 //  53.45561298, -36.18362015
 //  53.3547768, -36.10219008
 //  var bounds = [[-36.10219008,53.45561298],[-36.18362015,53.3547768]];
 //  53.45560616, -36.18361465   1.5 1.5
 //  53.35476999, -36.10218458   7400.5 7400.5
-  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
+//  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
 
   
   var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
