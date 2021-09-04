@@ -38,6 +38,7 @@
    var resolution0 = fov/pixAngularScale0; // zoom 0
    var projCenterLat = -36.14292669;
    var projCenterLong = 53.40518235;
+   var projCenterLong = 53.40518235-1.10055555555555e-05;
    var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=2 +y_0=2'; //used to be 0,0
 
    proj4.defs('urn:ogc:def:crs:d4', projString);
