@@ -68,8 +68,17 @@
 //  var bounds = [[-36.10219008,53.45561298],[-36.18362015,53.3547768]];
 //  53.45560616, -36.18361465   1.5 1.5
 //  53.35476999, -36.10218458   7400.5 7400.5
-  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
-
+//  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
+//>>> print(wcs.pixel_to_world(0.5, 0.5))
+//<SkyCoord (ICRS): (ra, dec) in deg
+//    (53.4556198, -36.18362565)>
+//>>> print(wcs.pixel_to_world(7399.5, 7399.5))
+//<SkyCoord (ICRS): (ra, dec) in deg
+//    (53.3547836, -36.10219559)>
+  var bounds = [[-36.10219559,53.4556198],[-36.18362565,53.3547836]];
+  
+  
+  
   
   var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
   // var image = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
@@ -106,7 +115,7 @@ for (var i = 0; i < urls.length; i++) {
     });
 }
 
-  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleBLUE});      
+  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleRED});      
   geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
