@@ -75,18 +75,18 @@
 
 //  map.setView( [3700, 3700], -2);
 
-//var myStyleRED   = {"color": "red", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};  
-//var myStyleGREEN = {"color": "green", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
-//var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
-var myStyleRED   = {"color": "red", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};  
-var myStyleGREEN = {"color": "green", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};    
-var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};    
+var myStyleRED   = {"color": "red", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};  
+var myStyleGREEN = {"color": "green", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
+var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "fill_weight": 0.0, "fill_opacity": 0.0};    
+//var myStyleRED   = {"color": "red", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};  
+//var myStyleGREEN = {"color": "green", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};    
+//var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "fill_opacity": 0.0};    
 
   
   
 var urls = [
-    'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson'
-    'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson'
+    'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson',
+    'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson',
     'ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson'
 ];
 
@@ -104,8 +104,8 @@ for (var i = 0; i < urls.length; i++) {
 }
 
 
-//  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", {style: myStyleGREEN});       
-//  geojsonLayer.addTo(map);
+  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", {style: myStyleGREEN});      
+  geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
 //  var myLayer = L.geoJSON().addTo(map);
