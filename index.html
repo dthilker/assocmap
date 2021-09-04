@@ -45,8 +45,8 @@
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
 // ra, dec are for the upper left corner of image
-//   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
-   var xform = new L.Transformation(-1, -36.10220110, -1, 53.35480403);
+   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
+//   var xform = new L.Transformation(-1, -36.10220110, -1, 53.35480403);
 //   var xform = new L.Transformation(-1, -36.10218458, -1, 53.45560616);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
@@ -62,24 +62,21 @@
    }).setView([projCenterLat,projCenterLong], 4);
 
 
-  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
+//  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
 //  53.45561298, -36.18362015
 //  53.3547768, -36.10219008
 //  var bounds = [[-36.10219008,53.45561298],[-36.18362015,53.3547768]];
 //  53.45560616, -36.18361465   1.5 1.5
 //  53.35476999, -36.10218458   7400.5 7400.5
-//  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
+  var bounds = [[-36.10218458,53.45560616],[-36.18361465,53.35476999]];
 
   
   var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
   // var image = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
+
   var sol = L.latLng([ -36.14292669, 53.40518235 ]);
   var markerone = L.marker(sol).addTo(map);
   markerone.bindTooltip("tool tip bound to marker"); 
-
-  var sol = L.latLng([ -36.14092669, 53.40918235 ]);
-  var markerone = L.marker(sol).addTo(map);
-  markerone.bindTooltip("tool tip bound to marker");
 
 //below works
 //  var polyline = L.polyline([[-36.10220109,53.4556],[-36.18363115,53.35476]]).addTo(map);
