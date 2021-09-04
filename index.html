@@ -123,11 +123,12 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.0
 };
 
-new L.geoJSON.AJAX("points.geojson", {
+var clusters = new L.geoJSON.AJAX("points.geojson", {
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
-}).addTo(map);
+});
+  clusters.addTo(map);
 
   
 </script>
