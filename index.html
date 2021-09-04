@@ -38,8 +38,9 @@
    var resolution0 = fov/pixAngularScale0; // zoom 0
    var projCenterLat = -36.14292669;
    var projCenterLong = 53.40518235;
-//   var projCenterLong = 53.40518235-1.10055555555555e-05;
-   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=0 +y_0=0'; //used to be 0,0
+   var projCenterX = 3700.5;
+   var projCenterY = 3700.5;
+   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=' + projCenterY +' +y_0='+projCenterX; //used to be 0,0
 
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
@@ -85,7 +86,7 @@
 
 //  map.setView( [3700, 3700], -2);
 
-var myStyleRED   = {"color": "red", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
+var myStyleRED   = {"color": "white", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
 var myStyleGREEN = {"color": "green", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};    
 var myStyleBLUE  = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0, "fillColor":"#00000000"};    
   
