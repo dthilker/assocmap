@@ -86,8 +86,7 @@ var myStyleBLUE  = {"color": "blue", "line_weight": 0.5, "line_opacity": 0.33, "
   
 var urls = [
     'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson',
-    'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson',
-    'ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson'
+    'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson'
 ];
 
 for (var i = 0; i < urls.length; i++) {
@@ -104,7 +103,7 @@ for (var i = 0; i < urls.length; i++) {
 }
 
 
-  var geojsonLayer = new L.GeoJSON.AJAX("64pc_wcs.geojson", {style: myStyleGREEN});      
+  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleGREEN});      
   geojsonLayer.addTo(map);
 
 //probably doesn't wait for load...
