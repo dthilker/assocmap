@@ -43,7 +43,7 @@
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
 // ra, dec are for the upper left corner of image
-   var xform = new L.Transformation(-1, -36.10220109, 0, 53.45557429);
+   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
@@ -57,8 +57,13 @@
      crs: crs
    }).setView([projCenterLat,projCenterLong], 4);
 
-//  var bounds = [[53.4556,53.35476],[-36.10220109,-36.18363115]];
-  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
+
+//  var bounds = [[-36.10220109,53.4556],[-36.18363115,53.35476]];
+//  53.45561298, -36.18362015
+//  53.3547768, -36.10219008
+  var bounds = [[-36.10219008,53.45561298],[-36.18362015,53.3547768]];
+
+  
   var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
   // var image = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
   var sol = L.latLng([ -36.14292669, 53.40518235 ]);
