@@ -76,6 +76,14 @@
 //<SkyCoord (ICRS): (ra, dec) in deg
 //    (53.3547836, -36.10219559)>
   var bounds = [[-36.10219559,53.4556198],[-36.18362565,53.3547836]];
+//>>> print(wcs.pixel_to_world(0.,0.))
+//<SkyCoord (ICRS): (ra, dec) in deg
+//    (53.45562662, -36.18363115)>
+//>>> print(wcs.pixel_to_world(7399.0, 7399.0))
+//<SkyCoord (ICRS): (ra, dec) in deg
+//    (53.35479041, -36.10220109)>
+  var bounds = [[-36.10220109,53.45562662],[-36.18363115,53.35479041]];
+
   
   
   
@@ -93,7 +101,7 @@
 
 //  map.setView( [3700, 3700], -2);
 
-var myStyleRED   = {"color": "white", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
+var myStyleRED   = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
 var myStyleGREEN = {"color": "green", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};    
 var myStyleBLUE  = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0, "fillColor":"#00000000"};    
   
