@@ -43,7 +43,7 @@
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
 // ra, dec are for the upper left corner of image
-   var xform = new L.Transformation(-1, -36.10220109, -1, 53.45557429);
+   var xform = new L.Transformation(-1, -36.10220109, 0, 53.45557429);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
