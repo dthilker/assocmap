@@ -96,20 +96,24 @@ var urls = [
     'ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson'
 ];
 
-for (var i = 0; i < urls.length; i++) {
-
-    var layers = {};
-
-    $.getJSON(urls[i], function (data) {
-        layers[i] = new L.GeoJSON(data,{ style: myStyleBLUE }).addTo(map);
-    }).done(function () {
-        console.log('$.getJSON Done!');
-    }).fail(function () {
-        console.log('$.getJSON Fail!');
-    });
-}
+//for (var i = 0; i < urls.length; i++) {
+//
+//    var layers = {};
+//
+//    $.getJSON(urls[i], function (data) {
+//        layers[i] = new L.GeoJSON(data,{ style: myStyleBLUE }).addTo(map);
+//    }).done(function () {
+//        console.log('$.getJSON Done!');
+//    }).fail(function () {
+//        console.log('$.getJSON Fail!');
+//    });
+//}
 
   var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleRED});      
+  geojsonLayer.addTo(map);
+  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson", {style: myStyleGREEN});      
+  geojsonLayer.addTo(map);
+  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleBLUE});      
   geojsonLayer.addTo(map);
 
   
