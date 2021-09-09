@@ -88,7 +88,7 @@
 //  map.setView( [3700, 3700], -2);
 
 var myStyleRED   = {"color": "red", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
-var myStyleGREEN = {"color": "cyan", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};    
+var myStyleGREEN = {"color": "green", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};    
 var myStyleBLUE  = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0, "fillColor":"#00000000"};    
   
 var urls = [
@@ -127,11 +127,8 @@ var geojsonMarkerOptions = {
 };
 
 var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {
-    pointToLayer: function (feature, latlng) {
-        return L.Circle(latlng, 300);
-    }
-});
-  clusters.addTo(map);
+    pointToLayer: function (feature, latlng) { return L.Circle(latlng, 300)}});
+clusters.addTo(map);
 
 //SCALE BAR CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER
 // A scale bar that shows arcsec / arcmin / degrees rather than meters
