@@ -116,7 +116,18 @@ var urls = [
   var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleBLUE});      
   geojsonLayer.addTo(map);
 
-  
+map.m.on('dblclick', function(e) {
+
+    var click = e.latlng;
+    
+    var circle = L.circleMarker([click.lat, click.lng], {
+        color: 'red',
+        radius: 50000,
+        fillColor: '#f03',
+        fillOpacity: 0.5
+    }).addTo(map.m);
+});
+	
 //FOR CLUSTERS  
 var geojsonMarkerOptions = {
     radius: 50000,
