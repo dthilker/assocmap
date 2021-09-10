@@ -165,6 +165,57 @@ L.control.layers(baselayers, overlays).addTo(map);
 //var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {pointToLayer: function (feature, latlng) {return L.Circle(latlng, 3000)}});
 //clusters.addTo(map);
 
+	
+	
+//BASELAYER SPACE BAR BLINKING CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER
+map.on('baselayerchange', function(e) {
+    console.log('baselayerchange: ' + e);
+    console.log('layer: ' + e.layer);
+    console.log('layer_name: ' + e.layer.name);
+    last_layer_name = layer_name;
+    layer_name = e.layer.name;
+    console.log('new layer_name: ' + layer_name + ', new last_layer_name: ' + last_layer_name);
+});
+
+// When space bar is pressed, switch back to previous layer.  This allows a quick "blink" between layers.
+function keyDown(e) {
+    //console.log('keyDown ' + e + ' keycode ' + e.keyCode + ', char ' + e.char + ' charCode ' + e.charCode);
+    //console.log('objquery has focus? ' + $('#objquery').is(":focus"));
+
+    if ($('#objquery').is(":focus")) {
+        return;
+    }
+
+    // space bar
+    if (e.keyCode == 32) {
+        //console.log('space bar!');
+        //console.log('layer_name ' + layer_name + ', last_layer_name ' + last_layer_name);
+        if (last_layer_name != layer_name) {
+            console.log('Switching from layer ' + layer_name + ' back to previous layer ' + last_layer_name);
+            var toadd = false;
+            var torm  = false;
+            for (i in allLayers) {
+                layer = allLayers[i];
+                if (layer_name == layer.name) {
+                    torm = layer;
+                } else if (last_layer_name == layer.name) {
+                    toadd = layer;
+                }
+            }
+            if (toadd && torm) {
+                torm.removeFrom(map);
+                toadd.addTo(map);
+            }
+        }
+        e.preventDefault();
+        e.stopPropagation();
+    }
+}
+document.addEventListener('keydown', keyDown);
+//map.getContainer().addEventListener('keypress', keyDown);	
+	
+	
+	
 //SCALE BAR CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER
 // A scale bar that shows arcsec / arcmin / degrees rather than meters
 var AstroControl = L.Control.Scale.extend({
