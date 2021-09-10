@@ -93,8 +93,13 @@
 //  map.setView( [3700, 3700], -2);
 
 var myStyleRED   = {"color": "red", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
-var myStyleGREEN = {"color": "#66FF00", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};    
+var myStyleGREEN = {"color": "#66FF00", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; // bright green
 var myStyleBLUE  = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0, "fillColor":"#00000000"};    
+var myStyleORANGE = {"color": "#FFA500", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; //orange (web)	
+var myStyleCYAN = {"color": "#00FFFF", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; //spanish sky blue (~bright cyan)
+var myStyleVIOLET = {"color": "#9F00FF", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; // vivid violet, also try phlox and psychedelic purple
+	
+	
   
 var urls = [
     'ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson',
@@ -114,11 +119,11 @@ var urls = [
 //    });
 //}
 
-  var geojsonLayer64 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleRED});      
+  var geojsonLayer64 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleORANGE});      
   geojsonLayer64.addTo(map);
-  var geojsonLayer32 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson", {style: myStyleGREEN});      
+  var geojsonLayer32 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson", {style: myStyleCYAN});      
   geojsonLayer32.addTo(map);
-  var geojsonLayer16 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleBLUE});      
+  var geojsonLayer16 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleVIOLET});      
   geojsonLayer16.addTo(map);
 	
 //FOR CLUSTERS  
