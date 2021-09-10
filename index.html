@@ -134,7 +134,7 @@ var urls = [
   geojsonLayer16.addTo(map);
 	
 //FOR CLUSTERS  
-var clusterOptions = {	
+var clusterC1Options = {	
     radius: 5,
     fillColor: "#00000000",
     color: "red",
@@ -143,24 +143,41 @@ var clusterOptions = {
     fillOpacity: 0.0
 };
 
-var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {
+var clustersC1 = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_C1.geojson", {
     pointToLayer: function (feature, latlng) {
-        return L.circle(latlng, clusterOptions);
+        return L.circle(latlng, clusterC1Options);
     }
 });
-clusters.addTo(map);	
+clustersC1.addTo(map);	
+
+var clusterC2Options = {	
+    radius: 5,
+    fillColor: "#00000000",
+    color: "#66FF00",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.0
+};
+
+var clustersC2 = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_C2.geojson", {
+    pointToLayer: function (feature, latlng) {
+        return L.circle(latlng, clusterC2Options);
+    }
+});
+clustersC2.addTo(map);		
 	
 var baselayers = {
     "SEG": imageseg,
-    "RGB": imagergb,
     "F275W": image275,
-    "F555W": image555
+    "F555W": image555,
+    "RGB": imagergb
 };
 var overlays = {
     "16 pc": geojsonLayer16,
     "32 pc": geojsonLayer32,
     "64 pc": geojsonLayer64,
-    "clusters": clusters
+    "C1 clusters": clustersC1,
+    "C2 clusters": clustersC2
 };	
 L.control.layers(baselayers, overlays).addTo(map);
 
