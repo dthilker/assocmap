@@ -133,6 +133,7 @@ var urls = [
 	
 //FOR CLUSTERS  
 var clusterOptions = {	
+    radius: 5,
     fillColor: "#00000000",
     color: "red",
     weight: 1,
@@ -142,7 +143,7 @@ var clusterOptions = {
 
 var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {
     pointToLayer: function (feature, latlng) {
-        return L.circle(latlng, {radius:5}, {style: clusterOptions});
+        return L.circle(latlng, {style: clusterOptions});
     }
 });
 clusters.addTo(map);	
