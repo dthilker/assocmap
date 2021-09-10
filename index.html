@@ -81,6 +81,8 @@
   var image275 = L.imageOverlay('ngc1365_uvis_f275w_exp_drc_sci.jpg', bounds).addTo(map);
   var image555 = L.imageOverlay('ngc1365_uvis_f555w_exp_drc_sci.jpg', bounds).addTo(map);
 
+//LEGACYSURVEY.ORG USE
+var layer_initial = 'imagergb';
 	
 //  var sol = L.latLng([ -36.14292669, 53.40518235 ]);
 //  var markerone = L.marker(sol).addTo(map)
@@ -165,7 +167,12 @@ L.control.layers(baselayers, overlays).addTo(map);
 //var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {pointToLayer: function (feature, latlng) {return L.Circle(latlng, 3000)}});
 //clusters.addTo(map);
 
+//LEGACYSURVEY.ORG USE
+var layer_name = layer_initial;
 	
+//LEGACYSURVEY.ORG USE
+// may be overridden by 'qstr' below.
+var last_layer_name = layer_name;
 	
 //BASELAYER SPACE BAR BLINKING CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER
 map.on('baselayerchange', function(e) {
