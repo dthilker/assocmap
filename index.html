@@ -76,9 +76,14 @@
   
   
   
-  var image = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
-  var image = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
+  var imageseg = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
+  var imagergb = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
 
+var baselayers = {
+    "Tile Layer 1": L.tileLayer(imageseg),
+    "Tile Layer 2": L.tileLayer(imagergb)
+};
+var overlays = {};	
 L.control.layers(baselayers, overlays).addTo(map);
 	
 //  var sol = L.latLng([ -36.14292669, 53.40518235 ]);
