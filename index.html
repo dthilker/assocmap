@@ -160,7 +160,7 @@ var clusterC2Options = {
 
 var clustersC2 = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_VGG_C2.geojson", {
     pointToLayer: function (feature, latlng) {
-        return L.ellipse(latlng, [5,10], 0, clusterC2Options);
+        return L.ellipse(latlng, [5,10], 90, clusterC2Options);
     }
 });
 clustersC2.addTo(map);		
