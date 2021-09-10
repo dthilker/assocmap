@@ -79,12 +79,6 @@
   var imageseg = L.imageOverlay('ngc1365_v_v1p2.png', bounds).addTo(map);
   var imagergb = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
 
-var baselayers = {
-    "SEG": imageseg,
-    "RGB": imagergb
-};
-var overlays = {};	
-L.control.layers(baselayers, overlays).addTo(map);
 	
 //  var sol = L.latLng([ -36.14292669, 53.40518235 ]);
 //  var markerone = L.marker(sol).addTo(map)
@@ -118,12 +112,12 @@ var urls = [
 //    });
 //}
 
-  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleRED});      
-  geojsonLayer.addTo(map);
-  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson", {style: myStyleGREEN});      
-  geojsonLayer.addTo(map);
-  var geojsonLayer = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleBLUE});      
-  geojsonLayer.addTo(map);
+  var geojsonLayer64 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws64pc_v1p2.geojson", {style: myStyleRED});      
+  geojsonLayer64.addTo(map);
+  var geojsonLayer32 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws32pc_v1p2.geojson", {style: myStyleGREEN});      
+  geojsonLayer32.addTo(map);
+  var geojsonLayer16 = new L.GeoJSON.AJAX("ngc1365_phangshst_associations_v_ws16pc_v1p2.geojson", {style: myStyleBLUE});      
+  geojsonLayer16.addTo(map);
 	
 //FOR CLUSTERS  
 var clusterOptions = {	
@@ -136,11 +130,21 @@ var clusterOptions = {
 
 var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {
     pointToLayer: function (feature, latlng) {
-        return L.greatCircle(latlng, {radius:5});
+        return L.circle(latlng, {radius:5});
     }
 });
 clusters.addTo(map);	
 	
+var baselayers = {
+    "SEG": imageseg,
+    "RGB": imagergb
+};
+var overlays = {
+    "16 pc": geojsonLayer16,
+    "32 pc": geojsonLayer32,
+    "64 pc": geojsonLayer64
+};	
+L.control.layers(baselayers, overlays).addTo(map);
 
 //var clusters = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2.geojson", {pointToLayer: function (feature, latlng) {return L.Circle(latlng, 3000)}});
 //clusters.addTo(map);
