@@ -80,8 +80,8 @@
   var imagergb = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
 
 var baselayers = {
-    "Tile Layer 1": L.tileLayer(imageseg),
-    "Tile Layer 2": L.tileLayer(imagergb)
+    "SEG": imageseg,
+    "RGB": imagergb
 };
 var overlays = {};	
 L.control.layers(baselayers, overlays).addTo(map);
