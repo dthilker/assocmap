@@ -144,6 +144,12 @@ var urls = [
   geojsonLayer16.addTo(map);
 	
 //FOR CLUSTERS  
+  var geojsonLayer64 = new L.GeoJSON.AJAX("/Users/dthilker/ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_VGG_C1_circlepoly.geojson", {style: myStyleRED});      
+  geojsonC1.addTo(map);
+  var geojsonLayer32 = new L.GeoJSON.AJAX("/Users/dthilker/ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_VGG_C2_circlepoly.geojson", {style: myStyleGREEN});      
+  geojsonC2.addTo(map);
+	
+	
 var clusterC1Options = {	
     radius: 5,
     fillColor: "#00000000",
@@ -187,7 +193,9 @@ var overlays = {
     "32 pc": geojsonLayer32,
     "64 pc": geojsonLayer64,
     "C1 clusters": clustersC1,
-    "C2 clusters": clustersC2
+    "C2 clusters": clustersC2,
+    "C1 circles": geojsonC1,
+    "C2 circles": geojsonC2	
 };	
 L.control.layers(baselayers, overlays).addTo(map);
 
