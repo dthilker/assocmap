@@ -80,7 +80,7 @@
   var imagergb = L.imageOverlay('color_ngc1365_uvis_f814w_f555w_f438w_exp_drc_sci.jpg', bounds).addTo(map);
   var image275 = L.imageOverlay('ngc1365_uvis_f275w_exp_drc_sci.jpg', bounds).addTo(map);
   var image555 = L.imageOverlay('ngc1365_uvis_f555w_exp_drc_sci.jpg', bounds).addTo(map);
-  var imagealma = L.imageOverlay('ngc1365_12m+7m+tp_co21_broad_mom0.fits_sci.jpg', bounds).addTo(map);
+ // var imagealma = L.imageOverlay('ngc1365_12m+7m+tp_co21_broad_mom0.fits_sci.jpg', bounds).addTo(map);
 
 	
 
@@ -179,8 +179,8 @@ var baselayers = {
     "SEG": imageseg,
     "F275W": image275,
     "F555W": image555,
-    "RGB": imagergb,
-    "ALMA": imagealma
+    "RGB": imagergb
+//    "ALMA": imagealma
 };
 var overlays = {
     "16 pc": geojsonLayer16,
