@@ -88,25 +88,18 @@ var layer_initial = 'imagergb';
 //  var markerone = L.marker(sol).addTo(map)
 //  markerone.bindTooltip("tool tip bound to marker"); 
 
+//attempt to get proper circles (not stretched) -- failed...
 //create the marker
-	marker = new L.marker(map.getCenter(),{
-		draggable: true,
-		autoPan: true 
-	}).addTo(map);
-
-	var radius = 1000; //10,000 km
-	//initialize the greatCircle object
-	gc = new L.greatCircle(marker.getLatLng(), {
-		radius: radius,
-	});
-	gc.addTo(map); //add to map	
-	
-	
-//below works
-//  var polyline = L.polyline([[-36.10220109,53.4556],[-36.18363115,53.35476]]).addTo(map);
-//  polyline.bindTooltip("tool tip is bound");
-
-//  map.setView( [3700, 3700], -2);
+//	marker = new L.marker(map.getCenter(),{
+//		draggable: true,
+//		autoPan: true 
+//	}).addTo(map);
+//	var radius = 1000; //10,000 km
+//	//initialize the greatCircle object
+//	gc = new L.greatCircle(marker.getLatLng(), {
+//		radius: radius,
+//	});
+//	gc.addTo(map); //add to map	
 
 var myStyleRED   = {"color": "red", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
 var myStyleGREEN = {"color": "#66FF00", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; // bright green
@@ -174,7 +167,7 @@ var clusterC2Options = {
 
 var clustersC2 = new L.GeoJSON.AJAX("ngc1365_phangshst_v1p1_candidates_bcw_IR2_ML_VGG_C2.geojson", {
     pointToLayer: function (feature, latlng) {
-        return L.ellipse(latlng, [5,10], 90, clusterC2Options);
+        return L.ellipse(latlng, [5,40], 90, clusterC2Options);
     }
 });
 clustersC2.addTo(map);		
