@@ -88,9 +88,18 @@ var layer_initial = 'imagergb';
 //  var markerone = L.marker(sol).addTo(map)
 //  markerone.bindTooltip("tool tip bound to marker"); 
 
-	
-L.greatCircle([-36.14292669, 53.40518235], {radius: 200});
-L.greatCircle.addTo(map);
+//create the marker
+	marker = new L.marker(map.getCenter(),{
+		draggable: true,
+		autoPan: true 
+	}).addTo(map);
+
+	var radius = 10000000; //10,000 km 
+	//initialize the greatCircle object
+	gc = new L.greatCircle(marker.getLatLng(), {
+		radius: radius,
+	});
+	gc.addTo(map); //add to map	
 	
 	
 //below works
