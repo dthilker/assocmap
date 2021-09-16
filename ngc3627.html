@@ -34,23 +34,23 @@
 
 <script>
 
-   var fov = 8000 * 1.10055555555555e-05;  // degrees
+   var fov = 14000 * 1.10055555555555e-05;  // degrees
    var Rearth = 6378137;  // meters
    var pixAngularScale0 = 512 * 180 / (3.14159 * 2 * Rearth); // zoom 0
    var resolution0 = fov/pixAngularScale0; // zoom 0
-   var projCenterLat = 13.00064285;
-   var projCenterLong = 170.06428067;
-   var projCenterX = 4000.5;
-   var projCenterY = 4000.5;
+   var projCenterLat = 12.98094648;
+   var projCenterLong = 170.06179237;
+   var projCenterX = 7000.5;
+   var projCenterY = 7000.5;
    var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=' + projCenterY +' +y_0='+projCenterX; //used to be 0,0
 
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
-  //>>> print(wcs.pixel_to_world(0.,7999.))
+//>>> print(wcs.pixel_to_world(0.,13999.))
 //<SkyCoord (ICRS): (ra, dec) in deg
-//    (170.10946333, 13.04465564)>
+//    (170.14087044, 13.05796781)>
 // ra, dec are for the upper left corner of image
-   var xform = new L.Transformation(-1, 13.04465564, -1, 170.10946333);
+   var xform = new L.Transformation(-1, 13.05796781, -1, 170.14087044);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
@@ -67,11 +67,12 @@
 
 //>>> print(wcs.pixel_to_world(0.,0.))
 //<SkyCoord (ICRS): (ra, dec) in deg
-//    (170.10944731, 12.95662225)>
-//>>> print(wcs.pixel_to_world(7999.,7999.))
+//    (170.14082144, 12.90390128)>
+//>>> print(wcs.pixel_to_world(13999.,13999.))
 //<SkyCoord (ICRS): (ra, dec) in deg
-//    (170.01909801, 13.04465564)>
-  var bounds = [[13.04465564,170.10944731],[12.95662225,170.01909801]];
+//    (169.9827143, 13.05796781)>
+
+  var bounds = [[13.05796781,170.14082144],[12.90390128,169.9827143]];
 
   
   
