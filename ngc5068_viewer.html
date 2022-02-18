@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>PHANGS viewer example - Leaflet</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js" integrity="sha512-MMmVaQGDVI3Wouc5zT5G7k/snN9gPqquIhZsHgIIHVDlRgYTYGxrwu6w482iIhAq8n5R6+pcBgpGgxFFBz7rZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js" integrity="sha512-NA+0vegFw6AiYXT23H+hk43LxqwpJkkviK/vHTESeu+jUpvWssfQRWWqSR07aUhGSKtfpkdlE8YFrVaHsnb3jw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js" integrity="sha512-Abr21JO2YqcJ03XGZRPuZSWKBhJpUAR6+2wH5zBeO4wAw4oksr8PRdF+BKIRsxvCdq+Mv4670rZ+dLnIyabbGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="l.ellipse.js"></script>
+    <script src="Leaflet.greatCircle.js"></script>
+    <style>
+      html, body {
+      height: 100%;
+      margin: 0;
+      }
+      #map {
+      width: 100%;
+      height: 100%;
+      }
+      </style>
+
+    
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+   var fov = 14000 * 1.10055555555555e-05;  // degrees
+   var Rearth = 6378137;  // meters
+   var pixAngularScale0 = 512 * 180 / (3.14159 * 2 * Rearth); // zoom 0
+   var resolution0 = fov/pixAngularScale0; // zoom 0
+   var projCenterLat = -21.038235660000002;
+   var projCenterLong = 199.715996369999999;
+   var projCenterX = 6000.500000000000000;
+   var projCenterY = 6000.500000000000000;
+   var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=' + projCenterY +' +y_0='+projCenterX; //used to be 0,0
+
+   proj4.defs('urn:ogc:def:crs:d4', projString);
+
+   var xform = new L.Transformation(-1, -20.972193275641501, -1, 199.786708509075339);
+
+   var crs = new L.Proj.CRS('EPSG:', projString, {
+     resolutions: [
+       resolution0, resolution0/2, resolution0/4, resolution0/8,
+       resolution0/16, resolution0/32, resolution0/64, resolution0/128, resolution0/256
+     ],
+     transformation: xform
+   });
+
+   var map = L.map('map', {
+     crs: crs
+   }).setView([projCenterLat,projCenterLong], 4);
+
+var bounds = [[-20.972193275641501,199.786771222932600],[-21.104248777635249,199.645284230924659]];
+
+  
+//var imageseg = L.imageOverlay('ngc5068_SEG.jpg', bounds).addTo(map);
+var imagergb = L.imageOverlay('ngc5068_BVI_RGB.jpg', bounds).addTo(map);
+var image275 = L.imageOverlay('ngc5068_F275W.jpg', bounds).addTo(map);
+var image555 = L.imageOverlay('ngc5068_F555W.jpg', bounds).addTo(map);
+//var imagealma = L.imageOverlay('ngc5068_12m+7m+tp_co21_broad_mom0.fits_sci.jpg', bounds).addTo(map);
+
+var layer_initial = 'imagergb';
+
+var myStyleRED   = {"color": "red", "weight": 3, "opacity": 1.0, "fillOpacity": 0.25};  
+var myStyleGREEN = {"color": "#66FF00", "weight": 3, "opacity": 1.0, "fillOpacity": 0.25}; // bright green
+var myStyleREDTHICK   = {"color": "red", "weight": 6, "opacity": 1.0, "fillOpacity": 0.25};  
+var myStyleGREENTHICK = {"color": "#66FF00", "weight": 6, "opacity": 1.0, "fillOpacity": 0.25}; // bright green
+var myStyleBLUE  = {"color": "blue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0, "fillColor":"#00000000"};    
+var myStyleORANGE = {"color": "#FFA500", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; //orange (web)	
+var myStyleBRIGHTCYAN = {"color": "#00FFFF", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; //spanish sky blue (~bright cyan)
+var myStyleVIOLET = {"color": "#9F00FF", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0}; // vivid violet
+	
+var myStyleBLUEVIOLET   = {"color": "blueviolet", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
+var myStyleDODGERBLUE   = {"color": "dodgerblue", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
+var myStyleCYAN   = {"color": "cyan", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  
+var myStylePHLOX   = {"color": "#DF00FF", "weight": 1, "opacity": 1.0, "fillOpacity": 0.0};  //phlox	
+
+//FOR ASSOCIATIONS
+var geojsonLayer64N = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-nuvselect-ws64pc.geojson", {style: myStyleCYAN});      
+geojsonLayer64N.addTo(map);
+var geojsonLayer32N = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-nuvselect-ws32pc.geojson", {style: myStyleBLUE});      
+geojsonLayer32N.addTo(map);
+var geojsonLayer16N = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-nuvselect-ws16pc.geojson", {style: myStylePHLOX});      
+geojsonLayer16N.addTo(map);
+var geojsonLayer64V = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-vselect-ws64pc.geojson", {style: myStyleCYAN});      
+geojsonLayer64V.addTo(map);
+var geojsonLayer32V = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-vselect-ws32pc.geojson", {style: myStyleBLUE});      
+geojsonLayer32V.addTo(map);
+var geojsonLayer16V = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc5068_multi_assoc-vselect-ws16pc.geojson", {style: myStylePHLOX});      
+geojsonLayer16V.addTo(map);
+  
+//FOR CLUSTERS  
+var geojsonC1ML = new L.GeoJSON.AJAX("ngc5068_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C1_circlepoly.geojson", {style: myStyleRED});      
+geojsonC1ML.addTo(map);
+var geojsonC2ML = new L.GeoJSON.AJAX("ngc5068_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C2_circlepoly.geojson", {style: myStyleGREEN});      
+geojsonC2ML.addTo(map);
+var geojsonC1H = new L.GeoJSON.AJAX("ngc5068_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C1_circlepoly.geojson", {style: myStyleREDTHICK});      
+geojsonC1H.addTo(map);
+var geojsonC2H = new L.GeoJSON.AJAX("ngc5068_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C2_circlepoly.geojson", {style: myStyleGREENTHICK});      
+geojsonC2H.addTo(map);
+	
+var baselayers = {
+    "F275W": image275,
+    "F555W": image555,
+    "RGB": imagergb
+//    "ALMA": imagealma
+};
+var overlays = {
+    "16 pc V": geojsonLayer16V,
+    "32 pc V": geojsonLayer32V,
+    "64 pc V": geojsonLayer64V,
+    "16 pc NUV": geojsonLayer16N,
+    "32 pc NUV": geojsonLayer32N,
+    "64 pc NUV": geojsonLayer64N,    
+    "C1 ML clust": geojsonC1ML,
+    "C2 ML clust": geojsonC2ML,
+    "C1 human clust": geojsonC1H,
+    "C2 human clust": geojsonC2H,    
+};	
+L.control.layers(baselayers, overlays).addTo(map);
+
+//LEGACYSURVEY.ORG
+var layer_name = layer_initial;
+	
+//LEGACYSURVEY.ORG
+// may be overridden by 'qstr' below.
+var last_layer_name = layer_name;
+	
+//BASELAYER SPACE BAR BLINKING CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER (DOESN'T WORK YET)
+map.on('baselayerchange', function(e) {
+    console.log('baselayerchange: ' + e);
+    console.log('layer: ' + e.layer);
+    console.log('layer_name: ' + e.layer.name);
+    last_layer_name = layer_name;
+    layer_name = e.layer.name;
+    console.log('new layer_name: ' + layer_name + ', new last_layer_name: ' + last_layer_name);
+});
+
+// When space bar is pressed, switch back to previous layer.  This allows a quick "blink" between layers.
+function keyDown(e) {
+    //console.log('keyDown ' + e + ' keycode ' + e.keyCode + ', char ' + e.char + ' charCode ' + e.charCode);
+    //console.log('objquery has focus? ' + $('#objquery').is(":focus"));
+
+    if ($('#objquery').is(":focus")) {
+        return;
+    }
+
+    // space bar
+    if (e.keyCode == 32) {
+        //console.log('space bar!');
+        //console.log('layer_name ' + layer_name + ', last_layer_name ' + last_layer_name);
+        if (last_layer_name != layer_name) {
+            console.log('Switching from layer ' + layer_name + ' back to previous layer ' + last_layer_name);
+            var toadd = false;
+            var torm  = false;
+            for (i in allLayers) {
+                layer = allLayers[i];
+                if (layer_name == layer.name) {
+                    torm = layer;
+                } else if (last_layer_name == layer.name) {
+                    toadd = layer;
+                }
+            }
+            if (toadd && torm) {
+                torm.removeFrom(map);
+                toadd.addTo(map);
+            }
+        }
+        e.preventDefault();
+        e.stopPropagation();
+    }
+}
+document.addEventListener('keydown', keyDown);
+//map.getContainer().addEventListener('keypress', keyDown);	
+	
+//SCALE BAR CODE LIFTED FROM LEGACYSURVEY.ORG VIEWER
+// A scale bar that shows arcsec / arcmin / degrees rather than meters
+var AstroControl = L.Control.Scale.extend({
+    options: {
+	    imperial: false,
+	    maxWidth: 300,
+    },
+    _updateMetric: function (maxMeters) {
+	    // meters -> arcsec
+	    var maxArcsec = maxMeters / 30.87;
+	    var maxUnit = maxArcsec;
+	    var unitName = 'arcsec';
+
+	    if (maxArcsec > 7200) {
+	        // degrees
+	        maxUnit /= 3600;
+	        unitName = 'deg';
+	    } else if (maxArcsec >= 180) {
+	        // arcmin
+	        maxUnit /= 60;
+	        unitName = 'arcmin';
+	    }
+	    var unit = this._getRoundNum(maxUnit);
+        var ratio = unit/maxUnit;
+		this._mScale.style.width = Math.round(this.options.maxWidth * ratio) + 'px';
+	    this._mScale.innerHTML = unit + ' ' + unitName;
+    },
+
+});
+
+new AstroControl().addTo(map);
+	
+</script>
+
+</body>
+</html>
