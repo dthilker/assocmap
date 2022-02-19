@@ -100,14 +100,23 @@ var geojsonLayer16V = new L.GeoJSON.AJAX("PHANGS_IR3_hst_wfc3_ngc628_multi_assoc
 geojsonLayer16V.addTo(map);
   
 //FOR CLUSTERS  
-var geojsonC1ML = new L.GeoJSON.AJAX("ngc628_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C1_circlepoly.geojson", {style: myStyleRED});      
+var geojsonC1ML = new L.GeoJSON.AJAX("ngc628c_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C1_circlepoly.geojson", {style: myStyleRED});      
 geojsonC1ML.addTo(map);
-var geojsonC2ML = new L.GeoJSON.AJAX("ngc628_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C2_circlepoly.geojson", {style: myStyleGREEN});      
+var geojsonC2ML = new L.GeoJSON.AJAX("ngc628c_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C2_circlepoly.geojson", {style: myStyleGREEN});      
 geojsonC2ML.addTo(map);
-var geojsonC1H = new L.GeoJSON.AJAX("ngc628_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C1_circlepoly.geojson", {style: myStyleREDTHICK});      
+var geojsonC1H = new L.GeoJSON.AJAX("ngc628c_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C1_circlepoly.geojson", {style: myStyleREDTHICK});      
 geojsonC1H.addTo(map);
-var geojsonC2H = new L.GeoJSON.AJAX("ngc628_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C2_circlepoly.geojson", {style: myStyleGREENTHICK});      
+var geojsonC2H = new L.GeoJSON.AJAX("ngc628c_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C2_circlepoly.geojson", {style: myStyleGREENTHICK});      
 geojsonC2H.addTo(map);
+var geojsonC1MLe = new L.GeoJSON.AJAX("ngc628e_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C1_circlepoly.geojson", {style: myStyleRED});
+geojsonC1MLe.addTo(map);
+var geojsonC2MLe = new L.GeoJSON.AJAX("ngc628e_phangshst_v1p1_candidates_bcw_IR3_ML_VGG_C2_circlepoly.geojson", {style: myStyleGREEN});
+geojsonC2MLe.addTo(map);
+var geojsonC1He = new L.GeoJSON.AJAX("ngc628e_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C1_circlepoly.geojson", {style: myStyleREDTHICK});
+geojsonC1He.addTo(map);
+var geojsonC2He = new L.GeoJSON.AJAX("ngc628e_phangshst_v1p1_candidates_bcw_IR3_HUMAN_C2_circlepoly.geojson", {style: myStyleGREENTHICK});
+geojsonC2He.addTo(map);
+
 	
 var baselayers = {
     "F275W": image275,
@@ -122,10 +131,14 @@ var overlays = {
     "16 pc NUV": geojsonLayer16N,
     "32 pc NUV": geojsonLayer32N,
     "64 pc NUV": geojsonLayer64N,    
-    "C1 ML clust": geojsonC1ML,
-    "C2 ML clust": geojsonC2ML,
-    "C1 human clust": geojsonC1H,
-    "C2 human clust": geojsonC2H,    
+    "C1 ML clust ngc628c": geojsonC1ML,
+    "C2 ML clust ngc628c": geojsonC2ML,
+    "C1 human clust ngc628c": geojsonC1H,
+    "C2 human clust ngc628c": geojsonC2H,
+    "C1 ML clust ngc628e": geojsonC1MLe,
+    "C2 ML clust ngc628e": geojsonC2MLe,
+    "C1 human clust ngc628e": geojsonC1He,
+    "C2 human clust ngc628e": geojsonC2He,    
 };	
 L.control.layers(baselayers, overlays).addTo(map);
 
