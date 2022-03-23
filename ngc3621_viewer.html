@@ -38,15 +38,15 @@
    var Rearth = 6378137;  // meters
    var pixAngularScale0 = 512 * 180 / (3.14159 * 2 * Rearth); // zoom 0
    var resolution0 = fov/pixAngularScale0; // zoom 0
-   var projCenterLat = 12.980946480000000;
-   var projCenterLong = 170.061792370000006;
-   var projCenterX = 7000.500000000000000;
-   var projCenterY = 7000.500000000000000;
+   var projCenterLat = -32.812899569999999;
+   var projCenterLong = 169.583324180000005;
+   var projCenterX = 6000.500000000000000;
+   var projCenterY = 6000.500000000000000;
    var projString = '+proj=gnom +lat_0=' + projCenterLat + ' +lon_0=' + projCenterLong +' +x_0=' + projCenterY +' +y_0='+projCenterX; //used to be 0,0
 
    proj4.defs('urn:ogc:def:crs:d4', projString);
 
-   var xform = new L.Transformation(-1, 13.057967808976795, -1, 170.140870444006396);
+   var xform = new L.Transformation(-1, -32.746847300087516, -1, 169.661828774620318);
 
    var crs = new L.Proj.CRS('EPSG:', projString, {
      resolutions: [
@@ -60,7 +60,7 @@
      crs: crs
    }).setView([projCenterLat,projCenterLong], 4);
 
-var bounds = [[13.057967808976795,170.140821442204896],[12.903901276234949,169.982714295993617]];
+var bounds = [[-32.746847300087516,169.661945525386244],[-32.878902778599198,169.504819585379693]];
 
   
 //var imageseg = L.imageOverlay('ngc3621_SEG.jpg', bounds).addTo(map);
